@@ -8,7 +8,10 @@ export async function main(ns: NS) {
         let maxram = ns.getServerMaxRam(hostname);
         let threads = Math.floor(maxram / scriptram);
 
-        while (ns.getServerSecurityLevel(hostname) > ns.getServerBaseSecurityLevel(hostname)) {
+        while (
+            ns.getServerSecurityLevel(hostname) >
+            ns.getServerBaseSecurityLevel(hostname)
+        ) {
             await ns.weaken(hostname, { threads });
         }
 
@@ -16,7 +19,7 @@ export async function main(ns: NS) {
             await ns.hack(hostname, { threads });
         }
 
-        while (currmoney / maxmoney < 0.40) {
+        while (currmoney / maxmoney < 0.4) {
             await ns.grow(hostname, { threads });
         }
 

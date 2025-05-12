@@ -19,22 +19,22 @@ export async function main(ns: NS) {
     commandMap[command](ns);
 }
 
-const commandMap: {[key: string]: (ns: NS) => void} = {
+const commandMap: { [key: string]: (ns: NS) => void } = {
     "karma": (ns: NS) => getKarma(ns),
     "inf": (ns: NS) => getInfiltrations(ns),
     "gangtasks": (ns: NS) => check(ns),
 }
 
-function check (ns: NS) {
+function check(ns: NS) {
     let gang = ns.gang;
     let tasks = gang.getTaskNames().map(task => gang.getTaskStats(task));
     tasks.forEach(task => {
-        let moneyGain = task.baseMoney * task.strWeight + 
-        task.baseMoney * task.defWeight + 
-        task.baseMoney * task.dexWeight +
-        task.baseMoney * task.agiWeight +
-        task.baseMoney * task.chaWeight +
-        task.baseMoney * task.hackWeight
+        let moneyGain = task.baseMoney * task.strWeight +
+            task.baseMoney * task.defWeight +
+            task.baseMoney * task.dexWeight +
+            task.baseMoney * task.agiWeight +
+            task.baseMoney * task.chaWeight +
+            task.baseMoney * task.hackWeight
 
         ns.tprintf(`Base money: ${task.baseMoney}.`);
         ns.tprintf(`${task.name} str weight: ${task.strWeight}.`);
